@@ -1,0 +1,62 @@
+1st insert: 
+insert into player_request (
+pid,
+fullName,
+gender,
+dob,
+aadharCardNumber,
+eventName,
+email,
+phone,
+addressLine1,
+addressLine2,
+pincode,
+schoolCollageName,
+photo,
+aadharCardPhoto) values (
+01,
+"Soham Hrushikesh Sathe",
+"M",
+"2004-01-23",
+930805277087,
+"Epee",
+"sohamsathe2304@gmail.com",
+9112086775,
+"214 , Rajiv Nagar",
+"Akkalkot Road , Solpaur",
+413006,
+"Hirachand Nemchand Collage Of Commerce , Solapur",
+"https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",
+"https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg"
+)
+
+
+NO pid insert : 
+insert into player_request (
+fullName,
+gender,
+dob,
+aadharCardNumber,
+eventName,
+email,
+phone,
+addressLine1,
+addressLine2,
+pincode,
+schoolCollageName,
+photo,
+aadharCardPhoto) values (
+"Dhruv Hitesh Goradia",
+"M",
+"2004-12-13",
+123456789101,
+"Foil",
+"dhruvg13@gmail.com",
+7741088375,
+"6 , Panchratna Appartment",
+"Budhwar Peth, Solpaur",
+413002,
+"Hirachand Nemchand Collage Of Commerce , Solapur",
+"https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",
+"https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg"
+)

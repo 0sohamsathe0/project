@@ -1,0 +1,22 @@
+create table player_request(
+pid int(5) auto_increment primary key,
+fullName varchar(150) not null,
+gender varchar(2)not null,
+dob date not null,
+aadharCardNumber bigint(20)not null unique,
+eventName varchar(6) not null,
+email varchar(100) not null unique,
+phone bigint not null,
+addressLine1 varchar(200) not null,
+addressLine2 varchar(200),
+pincode int(6) not null,
+schoolCollageName varchar(150),
+photo varchar(800) not null,
+aadharCardPhoto varchar(800) not null,
+requestStatus varchar(15) default "pending" 
+);
+
+
+
+
+desc player_request;
