@@ -1,6 +1,5 @@
-1st insert: 
-insert into player_request (
-pid,
+player insert : 
+insert into player_details (
 fullName,
 gender,
 dob,
@@ -11,39 +10,7 @@ phone,
 addressLine1,
 addressLine2,
 pincode,
-schoolCollageName,
-photo,
-aadharCardPhoto) values (
-01,
-"Soham Hrushikesh Sathe",
-"M",
-"2004-01-23",
-930805277087,
-"Epee",
-"sohamsathe2304@gmail.com",
-9112086775,
-"214 , Rajiv Nagar",
-"Akkalkot Road , Solpaur",
-413006,
-"Hirachand Nemchand Collage Of Commerce , Solapur",
-"https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",
-"https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg"
-)
-
-
-NO pid insert : 
-insert into player_request (
-fullName,
-gender,
-dob,
-aadharCardNumber,
-eventName,
-email,
-phone,
-addressLine1,
-addressLine2,
-pincode,
-schoolCollageName,
+schoolCollegeName,
 photo,
 aadharCardPhoto) values (
 "Dhruv Hitesh Goradia",
@@ -60,3 +27,23 @@ aadharCardPhoto) values (
 "https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",
 "https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg"
 )
+
+
+tournament insert :  
+
+insert into tournament_details 
+(title,startingDate,endDate,locationState,locationCity,tlevel) 
+values (
+    "17TH CADET NATIONAL CHAMPIONSHIP 2022-23",
+    "2022-12-11",
+    "2022-12-13",
+    "Maharashtra",
+    "Nashik",
+    "National"
+    );
+
+certificate_of_participation insert:
+insert into certificate_of_participation(tid,pid,certficateUrl)values(1,1,"https://res.cloudinary.com/sohamsathe/image/upload/v1726245812/profile_pictures/fudghcmyueko7u3bixtl.png");
+
+individual result insert:
+insert into Individual_Result(tid,pid,position,catagory) values(4,1,3,"Team");

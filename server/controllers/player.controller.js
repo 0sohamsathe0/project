@@ -1,4 +1,4 @@
-import{ getPlayers, getSinglePlayer, insertplayer } from"../database.js"
+import{ getPlayers, getSinglePlayer, insertplayer ,pool ,getSpecificTournament} from"../database.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 async function getAllPlayers(req,res){
@@ -11,7 +11,7 @@ async function getAllPlayers(req,res){
 }
 
 async function getPlayerDetail(req , res) {
-    const { pid } = req.body;
+    const { pid } = req.params;
   if (!pid) {
     return res.status(400).json({ message: "player id is required" });
   }
@@ -31,8 +31,9 @@ async function registerPlayer(req , res) {
         addressLine1,
         addressLine2,
         pincode,
-        schoolCollageName,
+        schoolCollegeName,
         } = req.body;
+
 
         const {photo , aadharCardPhoto } = req.files;
         
@@ -53,13 +54,11 @@ async function registerPlayer(req , res) {
         !addressLine1 ||
         !addressLine2 ||
         !pincode ||
-        !schoolCollageName
+        !schoolCollegeName
       ) {
         return res.status(400).json({ message: "All fields are required." });
       }
     
-
-      console.log( photo[0].path);
       
     const photoUrl = await uploadOnCloudinary(photo[0].path);
     const aadharCardPhotoUrl = await uploadOnCloudinary(aadharCardPhoto[0].path);
@@ -75,7 +74,7 @@ async function registerPlayer(req , res) {
         addressLine1,
         addressLine2,
         pincode,
-        schoolCollageName,
+        schoolCollegeName,
         photoUrl,
         aadharCardPhotoUrl
       );
@@ -85,6 +84,65 @@ async function registerPlayer(req , res) {
 }
 
 
+  async function handleGetPartiCerti(req, res) {
+    const { pid } = req.params;
+  
+    if (!pid) {
+      return res.status(400).json({ message: "Pid is required" });
+    }
+  
+    // Fetch participation certificates for the given pid
+    const [certificates] = await pool.query(
+      `SELECT * FROM certificate_of_participation WHERE pid = ${pid};`
+    );
+    // Fetch the tournament titles for each certificate
+    const certificatesWithTitles = await Promise.all(
+      certificates.map(async (certificate) => {
+        const [tournament] = await getSpecificTournament(certificate.tid);
+        console.log(tournament.title);
+        
+        return {
+          title: tournament?.title || "Unknown Tournament", // Default title if none found
+          certificateUrl: certificate.certficateUrl,
+        };
+      })
+    );
+  
+    // Send the response
+    res.json(certificatesWithTitles);
+  }
+  
 
 
-export { getAllPlayers, getPlayerDetail , registerPlayer }
+async function handleGeMeritCerti(req,res) {
+  const { pid } = req.params;
+  
+    if (!pid) {
+      return res.status(400).json({ message: "Pid is required" });
+    }
+  
+    // Fetch participation certificates for the given pid
+    const [certificates] = await pool.query(
+      `SELECT * FROM certificate_of_merit WHERE pid = ${pid};`
+    );
+    // Fetch the tournament titles for each certificate
+    const certificatesWithTitles = await Promise.all(
+      certificates.map(async (certificate) => {
+        const [tournament] = await getSpecificTournament(certificate.tid);
+        console.log(tournament.title);
+        
+        return {
+          title: tournament?.title || "Unknown Tournament", // Default title if none found
+          certificateUrl: certificate.certficateUrl,
+        };
+      })
+    );
+  
+    // Send the response
+    res.json(certificatesWithTitles);
+}
+
+
+
+
+export { getAllPlayers, getPlayerDetail , registerPlayer ,handleGetPartiCerti ,handleGeMeritCerti}

@@ -1,4 +1,4 @@
-create table player_request(
+create table player_details(
 pid int(5) auto_increment primary key,
 fullName varchar(150) not null,
 gender varchar(2)not null,
@@ -10,13 +10,21 @@ phone bigint not null,
 addressLine1 varchar(200) not null,
 addressLine2 varchar(200),
 pincode int(6) not null,
-schoolCollageName varchar(150),
+schoolCollegeName varchar(150),
 photo varchar(800) not null,
 aadharCardPhoto varchar(800) not null,
 requestStatus varchar(15) default "pending" 
 );
 
+create table tournament_details(tid int primary key auto_increment , title varchar(150) unique ,startingDate date, endDate date, locationState varchar(50) , locationCity varchar(50) , tlevel varchar(20) );
 
 
+create table tournament_entry(entry_id int primary key auto_increment , tid int , pid int , FOREIGN KEY (tid) REFERENCES tournament_details(tid) , FOREIGN KEY (pid) REFERENCES player_details(pid) );
 
-desc player_request;
+create table certificate_of_participation(cpid int primary key auto_increment , tid int,pid int, certficateUrl varchar(500) ,FOREIGN KEY (tid) REFERENCES tournament_details(tid) , FOREIGN KEY (pid) REFERENCES player_details(pid));
+
+
+create table Individual_Result(irid int primary key auto_increment , tid int, pid int , position int , catagory varchar(20) , FOREIGN KEY (tid) REFERENCES tournament_details(tid) , FOREIGN KEY (pid) REFERENCES player_details(pid));
+
+
+desc player_details;

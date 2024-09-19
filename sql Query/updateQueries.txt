@@ -1,8 +1,6 @@
 update requestStatus :
 
 
-
-
-update player_request
-set fullName="Dhruv Hitesh Goradia", gender="M", dob="2004-12-13" , aadharCardNumber=123450089101,eventName="Saber",email="dhruvg@gmail.com", phone=7741088375,addressLine1="6 , Panchratna Appartment", addressLine2="Budhwar Peth, Solpaur",pincode=413002,schoolCollageName="Hirachand Nemchand Collage Of Commerce , Solapur",photo="https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",aadharCardPhoto="https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg",requestStatus="pending"
+update player_details
+set fullName="Dhruv Hitesh Goradia", gender="M", dob="2004-12-13" , aadharCardNumber=123450089101,eventName="Saber",email="dhruvg@gmail.com", phone=7741088375,addressLine1="6 , Panchratna Appartment", addressLine2="Budhwar Peth, Solpaur",pincode=413002,schoolCollegeName="Hirachand Nemchand Collage Of Commerce , Solapur",photo="https://res.cloudinary.com/sohamsathe/image/upload/v1722227770/nwgfhkcxb8ltkijtq5i5.jpg",aadharCardPhoto="https://res.cloudinary.com/sohamsathe/image/upload/v1722227943/mcf7ron0ln23mjl8mslp.jpg",requestStatus="pending"
 where pid = 3;
