@@ -5,6 +5,16 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 //get player
 async function getAllPlayers(req,res){
     const players = await getPlayers();
+    const formatDate = (isoDate) => {
+      const date = new Date(isoDate);
+      return((date.getDate()+" / " + (date.getMonth()+1) +" / "+ date.getFullYear() ).toString());
+    };
+    
+    // Update the dob property directly in the original array
+    players.forEach((item) => {
+      item.dob = formatDate(item.dob);
+    });
+
   if (!players) {
     res.status(204).json({ message: "Players Doesn't Exist " });
   } else {

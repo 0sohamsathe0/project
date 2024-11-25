@@ -1,4 +1,4 @@
-import { getPendingPlayers , acceptPlayer , rejectPlayer , addTournament, addPartiCerti , addMeritCerti ,getAllTournaments} from "../database.js";
+import { getPendingPlayers , acceptPlayer , rejectPlayer , addTournament, addPartiCerti , addMeritCerti ,getAllTournaments , sortbyevent} from "../database.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 
@@ -103,6 +103,20 @@ const handleAddParticipationCertificate = async (req,res) => {
 
 
 
+const handleEventSort = async(req,res)=>{
+   const {event} = req.body;
+   const result = await sortbyevent(event)
 
+   const formatDate = (isoDate) => {
+      const date = new Date(isoDate);
+      return((date.getDate()+"-" + (date.getMonth()+1) +"-"+ date.getFullYear() ).toString());
+    };
+    
+    // Update the dob property directly in the original array
+    result.forEach((item) => {
+      item.dob = formatDate(item.dob);
+    });
+   res.status(200).json(result)
+}
 
-export { handleGetRequestdPlayers , handleAcceptPlayer ,handleRejectPlayer ,handleAddTournament ,handleAddMeritCertificate ,handleAddParticipationCertificate ,handleAddIndividualResult,handleAddTeamResult , handleGetAllTournament};
+export { handleGetRequestdPlayers , handleAcceptPlayer ,handleRejectPlayer ,handleAddTournament ,handleAddMeritCertificate ,handleAddParticipationCertificate ,handleAddIndividualResult,handleAddTeamResult , handleGetAllTournament,handleEventSort};

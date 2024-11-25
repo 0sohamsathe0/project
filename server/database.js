@@ -151,6 +151,19 @@ const addMeritCerti = async (tid , pid ,url) => {
 
 //Add Result
 
+
+
+
+// sort
+
+
+const sortbyevent = async (event) => {
+  const [rows] = await pool.query(
+    `select * from player_details where eventName = "${event}";`
+  );
+  return rows;
+}
+
 export {
   pool,
   getPlayers,
@@ -164,5 +177,5 @@ export {
   addPartiCerti,
   addMeritCerti,
   getAllTournaments,
-  getSpecificTournament
+  getSpecificTournament,sortbyevent
 };
