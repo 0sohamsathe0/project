@@ -1,6 +1,8 @@
 import{ getPlayers, getSinglePlayer, insertplayer ,pool ,getSpecificTournament} from"../database.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
+
+//get player
 async function getAllPlayers(req,res){
     const players = await getPlayers();
   if (!players) {
@@ -19,6 +21,9 @@ async function getPlayerDetail(req , res) {
   res.send(player);
 }
 
+
+
+// Player Register
 async function registerPlayer(req , res) {
     const {
         fullName,
@@ -83,8 +88,22 @@ async function registerPlayer(req , res) {
     
 }
 
+//login 
+async function handleLogin(req,res) {
+  const { aadharCardNumber ,dob } = req.body;   
+  const [rows] = await pool.query(`select * from player_details where aadharCardNumber=${aadharCardNumber} and dob = "${dob}";`);
+  const player = rows[0];  
+  if (!player) {
+    res.status(400).json({message : "player not found"})
+  }
+  
+  res.send(player);
+}
 
-  async function handleGetPartiCerti(req, res) {
+
+
+//get certificates
+async function handleGetPartiCerti(req, res) {
     const { pid } = req.params;
   
     if (!pid) {
@@ -110,10 +129,8 @@ async function registerPlayer(req , res) {
   
     // Send the response
     res.json(certificatesWithTitles);
-  }
+}
   
-
-
 async function handleGeMeritCerti(req,res) {
   const { pid } = req.params;
   
@@ -145,4 +162,4 @@ async function handleGeMeritCerti(req,res) {
 
 
 
-export { getAllPlayers, getPlayerDetail , registerPlayer ,handleGetPartiCerti ,handleGeMeritCerti}
+export { getAllPlayers, getPlayerDetail , registerPlayer ,handleGetPartiCerti ,handleGeMeritCerti , handleLogin}
