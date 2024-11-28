@@ -7,7 +7,7 @@ async function getAllPlayers(req,res){
     const players = await getPlayers();
     const formatDate = (isoDate) => {
       const date = new Date(isoDate);
-      return((date.getDate()+" / " + (date.getMonth()+1) +" / "+ date.getFullYear() ).toString());
+      return((date.getDate()+"/" + (date.getMonth()+1) +"/"+ date.getFullYear() ).toString());
     };
     
     // Update the dob property directly in the original array
